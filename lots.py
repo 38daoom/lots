@@ -3,7 +3,7 @@ import pandas as pd
 from time import sleep
 
 def validPhoneNumber(df,index):
-    print("번호를 서식대로 입력하지 않은 사람들을 제거합니다.")
+    print("올바르지 않은 핸드폰 및 중복 데이터를 제거합니다.")
     dic = df[df.keys()[index]]
     droplist = []
     for i in range(len(dic)-1):
@@ -12,6 +12,7 @@ def validPhoneNumber(df,index):
         else:
             droplist.append(i)
     df = df.drop(droplist,axis=0).reset_index(drop=True)
+    df = df.drop_duplicates()
     return df
 
 def findPhoneIndex(df):
